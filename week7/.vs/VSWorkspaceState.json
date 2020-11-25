@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MyScriptureJournal",
+    "\\MyScriptureJournal\\MyScriptureJournal",
+    "\\MyScriptureJournal\\MyScriptureJournal\\Migrations",
+    "\\MyScriptureJournal\\MyScriptureJournal\\Models",
+    "\\MyScriptureJournal\\MyScriptureJournal\\Pages",
+    "\\MyScriptureJournal\\MyScriptureJournal\\Pages\\Movies",
+    "\\MyScriptureJournal\\MyScriptureJournal\\Pages\\Shared",
+    "\\MyScriptureJournal\\MyScriptureJournal\\wwwroot",
+    "\\MyScriptureJournal\\MyScriptureJournal\\wwwroot\\css"
+  ],
+  "SelectedNode": "\\MyScriptureJournal\\MyScriptureJournal\\Pages\\Movies\\Index.cshtml.cs",
+  "PreviewInSolutionExplorer": false
+}

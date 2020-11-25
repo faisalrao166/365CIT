@@ -30,50 +30,53 @@ namespace MyScriptureJournal.Pages.Movies
 
         public async Task OnGetAsync(string sortOrder)
         {
-  
-            // Use LINQ to get list of genres.
+
+            // Use LINQ to get list of genres(list of books).
             IQueryable<string> genreQuery = from m in _context.Scripture
                                             orderby m.Book
                                             select m.Book;
+            //Searchbar (notes)
 
-            var movies = from m in _context.Scripture
-                         select m;
-            
+            var searchbar = from m in _context.Scripture
+                            select m;
+
             if (!string.IsNullOrEmpty(SearchString))
             {
-                movies = movies.Where(s => s.Notes.Contains(SearchString));
+                searchbar = searchbar.Where(s => s.Notes.Contains(SearchString));
             }
 
             if (!string.IsNullOrEmpty(NoteBook))
             {
-                movies = movies.Where(x => x.Book == NoteBook);
+                searchbar = searchbar.Where(x => x.Book == NoteBook);
             }
-            //sort
+            //sorting, date and book
 
             BookSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
 
-            IQueryable<Scripture> studentsIQ = from s in _context.Scripture
+            IQueryable<Scripture> columnSort = from s in _context.Scripture
                                                select s;
+       
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    studentsIQ = studentsIQ.OrderByDescending(s => s.Book);
+                    columnSort = columnSort.OrderByDescending(s => s.Book);
                     break;
                 case "Date":
-                    studentsIQ = studentsIQ.OrderBy(s => s.CreatedDate);
+                    columnSort = columnSort.OrderBy(s => s.CreatedDate);
                     break;
                 case "date_desc":
-                    studentsIQ = studentsIQ.OrderByDescending(s => s.CreatedDate);
+                    columnSort = columnSort.OrderByDescending(s => s.CreatedDate);
                     break;
                 default:
-                    studentsIQ = studentsIQ.OrderBy(s => s.Book);
+                    columnSort = columnSort.OrderBy(s => s.Book);
                     break;
             }
             Notes = new SelectList(await genreQuery.Distinct().ToListAsync());
-            Scripture = await movies.ToListAsync();
-            Scripture = await studentsIQ.AsNoTracking().ToListAsync();
+            Scripture = await searchbar.ToListAsync();
+      
+            //Scripture = await columnSort.AsNoTracking().ToListAsync();
         }
 
     }
