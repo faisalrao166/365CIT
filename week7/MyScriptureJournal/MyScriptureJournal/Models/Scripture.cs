@@ -7,10 +7,22 @@ namespace RazorPagesMovie.Models
     {
         public int ID { get; set; }
         public string Canon { get; set; }
+
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
         public string Book { get; set; }
-        public string Chapter { get; set; }
-        public string Verse { get; set; }
-        public string Note { get; set; }
+
+        [Required]
+        public int Chapter { get; set; }
+
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
+        public string Verses { get; set; }
+
+        [Required]
+        public string Notes { get; set; }
+
+        [Display(Name = "Created Date")]
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
 

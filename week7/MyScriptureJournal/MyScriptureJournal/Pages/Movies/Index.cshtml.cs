@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using MyScriptureJournal.Data;
-using RazorPagesMovie.Models;
 
 namespace MyScriptureJournal.Pages.Movies
 {
@@ -20,10 +19,34 @@ namespace MyScriptureJournal.Pages.Movies
         }
 
         public IList<Scripture> Scripture { get;set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+        public SelectList Notes { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string NoteBook { get; set; }
 
         public async Task OnGetAsync()
         {
-            Scripture = await _context.Scripture.ToListAsync();
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Scripture
+                                            orderby m.Book
+                                            select m.Book;
+
+            var movies = from m in _context.Scripture
+                         select m;
+            
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                movies = movies.Where(s => s.Notes.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(NoteBook))
+            {
+                movies = movies.Where(x => x.Book == NoteBook);
+            }
+            Notes = new SelectList(await genreQuery.Distinct().ToListAsync());
+            Scripture = await movies.ToListAsync();
         }
+
     }
 }

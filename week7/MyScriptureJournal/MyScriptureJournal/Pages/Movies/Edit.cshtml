@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int}"
 @model MyScriptureJournal.Pages.Movies.EditModel
 
 @{
@@ -30,14 +30,14 @@
                 <span asp-validation-for="Scripture.Chapter" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Scripture.Verse" class="control-label"></label>
-                <input asp-for="Scripture.Verse" class="form-control" />
-                <span asp-validation-for="Scripture.Verse" class="text-danger"></span>
+                <label asp-for="Scripture.Verses" class="control-label"></label>
+                <input asp-for="Scripture.Verses" class="form-control" />
+                <span asp-validation-for="Scripture.Verses" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Scripture.Note" class="control-label"></label>
-                <input asp-for="Scripture.Note" class="form-control" />
-                <span asp-validation-for="Scripture.Note" class="text-danger"></span>
+                <label asp-for="Scripture.Notes" class="control-label"></label>
+                <input asp-for="Scripture.Notes" class="form-control" />
+                <span asp-validation-for="Scripture.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Scripture.CreatedDate" class="control-label"></label>
