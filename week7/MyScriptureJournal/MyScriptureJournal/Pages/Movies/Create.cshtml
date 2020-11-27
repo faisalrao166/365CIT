@@ -20,7 +20,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Scripture.Book" class="control-label"></label>
-                <input asp-for="Scripture.Book" class="form-control" />
+                <select name="number" asp-for="Scripture.Book" class="form-control" style="width:177px" >
+                <option value="">Select a Book</option>
+                <option value="1">Mathew</option>
+                <option value="2">Genesis</option>
+                <option value="3">Leviticus</option>
+                <option value="2">John</option>
+                <option value="3">James</option>
+                </select>
                 <span asp-validation-for="Scripture.Book" class="text-danger"></span>
             </div>
             <div class="form-group">
