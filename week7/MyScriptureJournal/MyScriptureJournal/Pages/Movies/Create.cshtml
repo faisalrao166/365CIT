@@ -15,7 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Scripture.Canon" class="control-label"></label>
-                <input asp-for="Scripture.Canon" class="form-control" />
+                <select name="number" asp-for="Scripture.Canon" class="form-control" style="width:177px" >
+                <option value="">Select Canon</option>
+                <option value="1">Old testament</option>
+                <option value="2">new testament</option>
+               
+               </select>
                 <span asp-validation-for="Scripture.Canon" class="text-danger"></span>
             </div>
             <div class="form-group">
