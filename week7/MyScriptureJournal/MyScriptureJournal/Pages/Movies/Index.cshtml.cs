@@ -74,9 +74,10 @@ namespace MyScriptureJournal.Pages.Movies
                     break;
             }
             Notes = new SelectList(await genreQuery.Distinct().ToListAsync());
+            Scripture = await columnSort.AsNoTracking().ToListAsync();
             Scripture = await searchbar.ToListAsync();
       
-            //Scripture = await columnSort.AsNoTracking().ToListAsync();
+            
         }
 
     }
